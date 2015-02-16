@@ -1,0 +1,85 @@
+*-----------------------------------------------------------
+* Title      : EA finder
+* Written by : Race Brocx
+* Date       :
+* Description: Finds EA
+*-----------------------------------------------------------
+CR EQU $0D
+LF EQU $0A
+
+START:  ORG    $1000
+
+* Put program code here
+
+*store test data in some constant
+*Test data 00 01 000 000 111 100 000 000 000 000 1110
+
+******Sub routine for finding EA of Move******************
+
+Find_EA_Move
+
+
+    **find and display source
+    
+    CLR D4 ***D4 is used to determine if source or
+           ***destination is being found
+    Move.B EA_Source, D4
+    
+*Use bitshift for this 
+    **get 11th through 13th inclusive characters
+    **of the binary string to find EA of and
+    **store in D2
+    
+    
+    CMP.B #7, D1 ***Compare D1 to 111
+    BEQ Find_EA_Move_111 ***If Mode=111
+
+    
+Find_Destination_Move
+    
+    **find and display destination
+    Move.B EA_Destination, D4 ***Source found
+
+******END FIND_EA*********************************
+
+******Find_EA_111 is the subroutine for finding***
+******(xxx.W), (xxx.L), and #<data>***************
+Find_EA_Move_111
+
+    ***compare register to 000, 001, and 100
+
+    
+************END FIND_EA_111**********************
+
+******Find_EA_111 is the subroutine for finding***
+******#<data>*************************************
+
+Find_EA_Move_111_100
+    
+    BRA Check_End_Find_EA_Move
+    
+******END FIND_EA_111_100*************************
+
+******Check_END_FIND_EA***************************
+******Checks if EA find is finished***************
+
+Check_End_Find_EA_Move
+    CMP.B EA_Source, D4  ***EA_Source
+    BEQ Find_Destination_Move ***check if destination
+    CLR D4    
+    *Move.B #0, EA_Source_OR_Destination *set to 0
+    BRA OPCODE_Loop ***If done go back to OPCODE
+    
+******END Check_END_FIND_EA**********************
+
+* Put variables and constants here
+
+******103C 000E (MOVE.B #14, D0)*********************
+******00 01 000 000 111 100 000 000 000 000 1110 (14)
+testEA    dc.L    %00010000001111000000000000001110
+EA_Source   EQU   $0
+EA_Destination  EQU  $1
+
+OPCODE_Loop ***end here delete this
+
+    END    START        ; last line of source
