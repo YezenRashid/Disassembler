@@ -1,6 +1,0 @@
-To access EA components, call using the following command format.
-BRA Find_EA_Move ***Where "Move" is the OPCode you are trying to find the EA for
-
-After the EA subroutine(s) are finished executing, OPCODES_Loop is called
-OPCODES_Loop goes to whereever the label for OPCODES_Loop is located
-
