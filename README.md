@@ -1,6 +1,6 @@
 # Disassembler
 
-This is code for a dissassemlber our group created. It is writting in 68k assemlby code.  
+This is code for a dissassembler our group created. It is writting in 68k assembly code.  
 
 The program begins by asking the user to specify a memory location that will be used by the program to dissembler that memory location. 
 After being supplied with a starting address and ending address the disassembler attempts to decode program in memory. If a given 
