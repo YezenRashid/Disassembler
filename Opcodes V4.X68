@@ -1,6 +1,6 @@
 *-----------------------------------------------------------
 * Title      : Opcodes
-* Written by : Andy Thompson
+* Written by : Andy Thompson, Yezen Rashid
 * Date       :
 * Description: D0 is the input, D1 holds the next 3 bits,
 * D2 holds the subsequent 3, D3 holds next 3, and D4 holds 
